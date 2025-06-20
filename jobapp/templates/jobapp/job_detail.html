@@ -1,0 +1,27 @@
+{% extends 'jobapp/home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="mb-3">{{ job.title }}</h2>
+        <p class="text-muted">Posted on: {{ job.posted_on|date:"F j, Y" }}</p>
+
+        <p><strong>Company:</strong> {{ job.company }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Salary:</strong> ₹{{ job.salary }}</p>
+        <p><strong>Description:</strong></p>
+        <p>{{ job.description }}</p>
+
+        <!-- ✅ Show Apply button only to Job Seekers -->
+        {% if request.user.is_authenticated and request.user.userprofile.role == "Job Seeker" %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">✅ Apply Now</button>
+            </form>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">← Back to Listings</a>
+    </div>
+</div>
+{% endblock %}

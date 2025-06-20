@@ -1,0 +1,26 @@
+# Bytecode
+*.pyc
+__pycache__/
+
+# Django database
+db.sqlite3
+
+# Environment variables
+.env
+
+# Media files (uploaded resumes)
+resumes/
+
+# Static files (optional, if using collectstatic)
+staticfiles/
+media/
+
+# VS Code settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs (if you add any later)
+*.log
