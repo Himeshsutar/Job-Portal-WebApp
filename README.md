@@ -12,12 +12,12 @@ A full-featured web application where **Job Seekers** can search and apply for j
   - Register and log in
   - Search and filter job listings
   - Apply to jobs (only once per job)
-  - Track submitted applications
+  
 
 - **Employer**
   - Register and log in
   - Post new job listings
-  - View, edit, and delete their job posts
+  - View, edit, and delete job posts
 
 - **Admin**
   - Access Django Admin Panel
