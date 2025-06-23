@@ -63,7 +63,7 @@ job_portal/
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/job-portal.git
+git clone https://github.com/Himeshsutar/Job-Portal-WebApp.git
 cd job-portal
 ```
 
