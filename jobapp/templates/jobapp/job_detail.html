@@ -17,7 +17,7 @@
         {% if request.user.is_authenticated and request.user.userprofile.role == "Job Seeker" %}
             <form method="post" class="mt-4">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success">✅ Apply Now</button>
+                <a href="{% url 'apply_job' job.id %}" class="btn btn-success mt-3">Apply Now</a>                
             </form>
         {% endif %}
 

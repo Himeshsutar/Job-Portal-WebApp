@@ -38,6 +38,9 @@ class Application(models.Model):
     applied_at = models.DateTimeField(auto_now_add=True)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
+    class Meta:
+        unique_together = ('job', 'applicant')  # ✅ Prevents duplicates at DB level
+
     def __str__(self):
         return f"{self.name} applied for {self.job.title}"
 

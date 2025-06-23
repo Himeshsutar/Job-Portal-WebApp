@@ -9,6 +9,8 @@ from django.contrib import messages
 from .models import Job, Application, UserProfile
 from .forms import JobForm, ApplicationForm, SignUpForm
 from .decorators import employer_required, jobseeker_required
+from collections import OrderedDict
+
 # -----------------------------
 # Authentication Views
 # -----------------------------
@@ -40,7 +42,6 @@ def login_view(request):
 
             # ✅ Redirect based on custom user role
             profile = get_object_or_404(UserProfile, user=user)
-
             if profile.role == "Employer":
                 return redirect('employer_dashboard')
             elif profile.role == "Job Seeker":
@@ -50,7 +51,6 @@ def login_view(request):
             return render(request, 'jobapp/login.html', {'error': 'Invalid credentials'})
 
     return render(request, 'jobapp/login.html')
-
 
 
 def logout_view(request):
@@ -63,11 +63,11 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
-    # Only Job Seekers can access the home page
-    if request.user.userprofile.role != "Job Seeker":
-        return redirect('employer_dashboard')
+    profile = get_object_or_404(UserProfile, user=request.user)
 
-    # Normal job listings logic
+    if profile.role.strip().lower() != "job seeker":
+        return HttpResponseForbidden("You are not authorized to view this page.")
+
     search = request.GET.get('search')
     location = request.GET.get('location')
     jobs = Job.objects.all()
@@ -101,20 +101,26 @@ def post_job(request):
 @login_required
 @jobseeker_required
 def apply_job(request, job_id):
-    job = get_object_or_404(Job, id=job_id)
+    job = get_object_or_404(Job, pk=job_id)
+
+    # prevent duplicate applications
+    if Application.objects.filter(job=job, applicant=request.user).exists():
+        return redirect('job_detail', job_id=job.id)
 
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             application = form.save(commit=False)
-            application.applicant = request.user
             application.job = job
+            application.applicant = request.user
             application.save()
-            return redirect('home')  # Or redirect to a "my_applications" page
+            return redirect('job_detail', job_id=job.id)
     else:
         form = ApplicationForm()
 
     return render(request, 'jobapp/apply_job.html', {'form': form, 'job': job})
+
+
 # -----------------------------
 # Custom Signup with Role Selection
 # -----------------------------
@@ -152,10 +158,21 @@ def jobseeker_dashboard(request):
 
 @login_required
 def my_applications(request):
-    # Replace Application with your actual model name if different
-    applications = Application.objects.filter(applicant=request.user)
+    applications = Application.objects.filter(applicant=request.user).order_by('-applied_at')
 
-    return render(request, 'jobapp/my_applications.html', {'applications': applications})
+    # Filter: Only keep latest application per job
+    unique_apps = OrderedDict()  # Preserves order
+
+    for app in applications:
+        if app.job.id not in unique_apps:
+            unique_apps[app.job.id] = app
+
+    deduplicated_applications = list(unique_apps.values())
+
+    return render(request, 'jobapp/my_applications.html', {
+        'applications': deduplicated_applications
+    })
+
 
 @login_required
 def my_jobs(request):
