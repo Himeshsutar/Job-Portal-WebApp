@@ -175,4 +175,3 @@ yarl==1.9.3
 youtube-dl==2021.12.17
 zope.event==5.0
 zope.interface==6.1
->>>>>>> 493433c (Added django to requirements)
