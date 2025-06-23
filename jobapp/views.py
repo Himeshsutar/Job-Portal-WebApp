@@ -12,7 +12,7 @@ from .decorators import employer_required, jobseeker_required
 from collections import OrderedDict
 
 # -----------------------------
-# Authentication Views
+# Authentication Views Registration
 # -----------------------------
 
 def register_view(request):
@@ -26,6 +26,9 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'jobapp/register.html', {'form': form})
 
+# -----------------------------
+# Authentication Login View
+# -----------------------------
 
 def login_view(request):
     if request.method == 'POST':
@@ -52,6 +55,9 @@ def login_view(request):
 
     return render(request, 'jobapp/login.html')
 
+# -----------------------------
+# Authentication Logout View
+# -----------------------------
 
 def logout_view(request):
     logout(request)
@@ -97,6 +103,9 @@ def post_job(request):
         form = JobForm()
     return render(request, 'jobapp/post_job.html', {'form': form})
 
+# -----------------------------
+# Allows Job Seekers to apply for a job
+# -----------------------------
 
 @login_required
 @jobseeker_required
@@ -140,6 +149,10 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'jobapp/signup.html', {'form': form})
 
+# -----------------------------
+# Shows jobs posted by the employer
+# -----------------------------
+
 @login_required
 def employer_dashboard(request):
     if request.user.userprofile.role != "Employer":
@@ -148,6 +161,10 @@ def employer_dashboard(request):
     jobs = Job.objects.filter(posted_by=request.user)
     return render(request, 'jobapp/employer_dashboard.html', {'jobs': jobs})
 
+# -----------------------------
+# Displays applications made by the job seeker
+# -----------------------------
+
 @login_required
 def jobseeker_dashboard(request):
     if request.user.userprofile.role != 'Job Seeker':
@@ -155,6 +172,10 @@ def jobseeker_dashboard(request):
 
     applications = Application.objects.filter(applicant=request.user)
     return render(request, 'jobapp/jobseeker_dashboard.html', {'applications': applications})
+
+# -----------------------------
+# Lists unique job applications (one per job) by the current job seeker
+# -----------------------------
 
 @login_required
 def my_applications(request):
@@ -173,6 +194,9 @@ def my_applications(request):
         'applications': deduplicated_applications
     })
 
+# -----------------------------
+# Lists jobs posted by the logged-in employer
+# -----------------------------
 
 @login_required
 def my_jobs(request):
@@ -181,6 +205,10 @@ def my_jobs(request):
 
     jobs = Job.objects.filter(posted_by=request.user)
     return render(request, 'jobapp/my_jobs.html', {'jobs': jobs})
+
+# -----------------------------
+# Shows job details
+# -----------------------------
 
 @login_required
 def job_detail(request, job_id):
@@ -197,6 +225,9 @@ def job_detail(request, job_id):
 
     return render(request, 'jobapp/job_detail.html', {'job': job})
 
+# -----------------------------
+# Allows Employers to edit a posted job
+# -----------------------------
 
 @login_required
 def edit_job(request, job_id):
@@ -212,6 +243,10 @@ def edit_job(request, job_id):
 
     return render(request, 'jobapp/edit_job.html', {'form': form})
 
+# -----------------------------
+# Allows Employers to delete a posted job
+# -----------------------------
+
 @login_required
 def delete_job(request, job_id):
     job = get_object_or_404(Job, id=job_id, posted_by=request.user)
@@ -219,6 +254,10 @@ def delete_job(request, job_id):
         job.delete()
         return redirect('my_jobs')
     return render(request, 'jobapp/delete_job.html', {'job': job})
+
+# -----------------------------
+# Utility function to check if a user is an Employer
+# -----------------------------
 
 def is_employer(user):
     return user.is_authenticated and hasattr(user, 'profile') and user.profile.role == 'employer'
