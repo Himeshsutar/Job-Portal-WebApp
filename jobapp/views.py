@@ -98,7 +98,7 @@ def post_job(request):
             job = form.save(commit=False)
             job.posted_by = request.user
             job.save()
-            return redirect('home')  # Redirect after successful submission
+            return redirect('employer_dashboard')  # Redirect after successful submission
     else:
         form = JobForm()
     return render(request, 'jobapp/post_job.html', {'form': form})
