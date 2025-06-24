@@ -1,0 +1,211 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 0;
+    padding-left: 5px;
+}
+
+
+.job-card {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #007BFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+
+.job-card {
+    border: 1px solid #ffffff;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+body {
+    background-color: rgb(45, 61, 165) !important;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+}
+
+ body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        .job-card, .form-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .form-card h3 {
+            margin-top: 0;
+        }
+        .form-card form label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-card form input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-card button {
+            margin-top: 15px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-card button:hover {
+            background-color: #218838;
+        }
+
+.apply-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #0056b3;
+}
+
+body {
+    background: #f0f2f5;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+input.form-control {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    font-weight: 500;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.register-card, .login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.register-card:hover, .login-card:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+input.form-control {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-success {
+    font-weight: 500;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+
+/* Navbar Custom Styling */
+/* ✅ Cleaner Blue Navbar Styling */
+.navbar-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  rgb(45, 61, 165); /* Bootstrap blue */
+    padding: 14px 30px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px; /* space below navbar */
+}
+
+.navbar-left .app-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.welcome-user {
+    font-size: 16px;
+    color: #f8f9fa;
+}
