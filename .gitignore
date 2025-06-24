@@ -1,23 +1,19 @@
-# Bytecode
-*.pyc
+# Byte-compiled / cache files
 __pycache__/
+*.pyc
+
 
 # Environment variables
 .env
 
-# Media files (uploaded resumes)
+# Media/uploads
+media/
 resumes/
 
-# Static files (optional, if using collectstatic)
+# Static files
 staticfiles/
-media/
-
-# VS Code settings
-.vscode/
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# Logs (if you add any later)
-*.log
