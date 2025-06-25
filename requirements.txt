@@ -28,3 +28,4 @@ arabic-reshaper==2.1.4
 # Optional: Bootstrap rendering helpers
 sqlparse==0.4.2
 asgiref==3.8.1
+whitenoise
