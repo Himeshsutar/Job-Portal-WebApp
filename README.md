@@ -90,6 +90,15 @@ python manage.py runserver
 
 ---
 
+## 🔗 Live Deployment
+
+The application is live at:  
+👉 https://job-portal-webapp-kbrn.onrender.com
+
+🛈 **Note**: Hosted on Render’s free plan.  
+Free services **go to sleep after inactivity**, so initial page loads may be **slightly delayed** (cold start). Subsequent usage will be smooth.
+
+
 ## 📌 Project Highlights
 
 - Fully role-based navigation and views
