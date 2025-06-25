@@ -40,21 +40,43 @@ A full-featured web application where **Job Seekers** can search and apply for j
 ## 📁 Project Structure
 
 ```
-job_portal/
+Job-Portal-WebApp/
+│
 ├── jobapp/
-│   ├── templates/jobapp/
-│   ├── static/jobapp/
+│   ├── __pycache__/
+│   ├── migrations/
+│   ├── static/
+│   │   └── jobapp/
+│   │       └── style.css
+│   ├── templates/
+│   │   └── jobapp/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── decorators.py
+│   ├── forms.py
 │   ├── models.py
-│   ├── views.py
+│   ├── signals.py
+│   ├── tests.py
 │   ├── urls.py
-│   └── forms.py
-├── job_portal/
-│   ├── settings.py
-│   ├── urls.py
+│   └── views.py
+│
+├── media/
+├── resumes/
+├── staticfiles/              # Generated after running collectstatic
+│
+├── .env                      # Environment variables
+├── .gitignore
+├── asgi.py
 ├── db.sqlite3
 ├── manage.py
+├── Procfile
+├── README.md
 ├── requirements.txt
-└── README.md
+├── settings.py
+├── urls.py
+└── wsgi.py
+
 ```
 
 ---
@@ -64,7 +86,7 @@ job_portal/
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/Himeshsutar/Job-Portal-WebApp.git
-cd job-portal
+cd job-portal-webapp
 ```
 
 ### 2️⃣ Install Dependencies
